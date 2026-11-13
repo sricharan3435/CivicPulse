@@ -1,14 +1,8 @@
 from fastapi import APIRouter
 
-router = APIRouter()
+router = APIRouter(prefix="/categories", tags=["categories"])
 
-@router.get("/categories")
-async def get_categories():
-    return {
-        "categories": [
-            "Potholes",
-            "Garbage",
-            "Water Leaks",
-            "Streetlight Failures"
-        ]
-    }
+
+@router.get("")
+def get_categories():
+    return {"categories": ["Potholes", "Garbage", "Water Leaks", "Streetlight Failures", "Other"]}

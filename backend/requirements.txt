@@ -3,3 +3,10 @@ uvicorn[standard]
 sqlalchemy
 psycopg[binary]
 python-dotenv
+alembic
+python-multipart
+pillow
+cloudinary
+numpy
+pandas
+scikit-learn
