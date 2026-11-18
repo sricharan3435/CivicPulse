@@ -80,3 +80,29 @@ FastAPI’s interactive docs are at <http://127.0.0.1:8000/docs>.
 ## Scope and deployment notes
 
 This is a local-development MVP with a shared coordinator key. A public deployment should add individual coordinator accounts and roles, HTTPS, request and upload rate limits, retention/privacy policies for precise location and images, and operational database backups. Schema changes are managed with Alembic; run `alembic upgrade head` before starting against an existing database.
+
+## Start CivicPulse after installation
+
+After restarting your computer, open the CivicPulse project folder in a terminal. Start PostgreSQL if you are using the PostgreSQL database configured in `.env`:
+
+```bash
+sudo systemctl start postgresql
+```
+
+In **Terminal 1**, activate the project's virtual environment, then start the API:
+
+```bash
+source .venv/bin/activate
+cd backend
+alembic upgrade head
+uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+```
+
+Leave this terminal running. In **Terminal 2**, start the React development server:
+
+```bash
+cd frontend
+npm run dev
+```
+
+Open <http://127.0.0.1:5173> in your browser. Run each command on its own line; do not add a trailing backslash. If you use SQLite instead of PostgreSQL, skip the PostgreSQL service command.
